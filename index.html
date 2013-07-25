@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no" />
+  
+  <title>FoxMod</title>
+  <link rel="stylesheet" href="style/action_menu.css">
+  <link rel="stylesheet" href="style/buttons.css">
+  <link rel="stylesheet" href="style/confirm.css">
+  <link rel="stylesheet" href="style/edit_mode.css">
+  <link rel="stylesheet" href="style/headers.css">
+  <link rel="stylesheet" href="style/input_areas.css">
+  <link rel="stylesheet" href="style/status.css">
+  <link rel="stylesheet" href="style/switches.css">
+  <!--link rel="stylesheet" href="style_unstable/drawer.css"-->
+  <link rel="stylesheet" href="style_unstable/lists.css">
+  <link rel="stylesheet" href="style_unstable/progress_activity.css">
+  <link rel="stylesheet" href="style_unstable/scrolling.css">
+  <link rel="stylesheet" href="style_unstable/seekbars.css">
+  <link rel="stylesheet" href="style_unstable/tabs.css">
+  <link rel="stylesheet" href="style_unstable/toolbars.css">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="icons/styles/action_icons.css">
+  <link rel="stylesheet" href="icons/styles/media_icons.css">
+  <link rel="stylesheet" href="icons/styles/comms_icons.css">
+
+  <!-- Transitions -->
+  <link rel="stylesheet" href="transitions.css">
+  
+  <!-- Util CSS: some extra tricks -->
+  <link rel="stylesheet" href="util.css">
+  <link rel="stylesheet" href="fonts.css">
+
+  <!-- Additional markup to make Building Blocks kind of cross browser -->
+  <style type="text/css" media="screen">
+  .mod-list li a {
+    text-decoration: none;
+    color: #000;
+  }
+  .mod-list li a.active {
+    font-weight: bold;
+  }
+  </style>
+</head>
+<body>
+  <section role="region" id="index" data-position="current">
+    <header>
+      <menu type="toolbar">
+        <a href="#"><span class="icon icon-edit">edit</span></a>
+        <a href="#"><span class="icon icon-add">add</span></a>
+      </menu>
+      <h1>FoxMod</h1>
+    </header>
+    <article class="content scrollable">
+      <section data-type="list">
+        <ul class="mod-list">
+          <li><p><a class="mod" href="mods/cream_of_the_earth.mod">Cream Of The Earth (Romeo Knight/ TRSRI)</a></p></li>
+          <li><p><a class="mod" href="mods/in_the_kitchen.mod">In The Kitchen (4mat/Anarchy)</a><p></li>
+          <li><p><a class="mod" href="mods/how_to_skin_a_cat.mod">How To Skin A Cat (Melon Dezign)</a><p></li>
+          <li><p><a class="mod" href="mods/one_finger.mod">One Finger (The Fox II)</a><p></li>
+          <li><p><a class="mod" href="mods/kurkkukipu.mod">Kurkkukipu (vesuri/da jormas)</a><p></li>
+          <li><p><a class="mod" href="mods/chip-set-i.mod">Chip Set I (halfbyte/pandemon!um)</a><p></li>
+         
+      </section>
+    </article>
+  </section>
+  <script type="text/javascript" charset="utf-8" src="js/jquery.min.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/underscore.min.js"></script>
+  <script type="text/javascript" src="js/resampler.js"></script>
+  <script type="text/javascript" src="js/swfobject.js"></script>
+  <script type="text/javascript" src="js/XAudioServer.js"></script>
+  <script type="text/javascript" src="js/raf.js"></script>
+  
+  <script type="text/javascript" src="js/app.js"></script>
+  <script type="text/javascript" src="js/mod.js"></script>
+  <script type="text/javascript" src="js/player.js"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+    "name": "FoxMod",
+    "description": "A 4ch mod player for Firefox OS",
+    "launch_path": "/index.html",
+    "orientation": ["portrait"],
+    "icons": {
+        "16": "/images/icons/foxmod-16.png",
+        "48": "/images/icons/foxmod-48.png",
+        "128": "/images/icons/foxmod-128.png"
+    },
+    "developer": {
+        "name": "Jan Krutisch",
+        "url": "http://jan.krutisch.de"
+    },
+    "default_locale": "en"
+}
