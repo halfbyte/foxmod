@@ -111,6 +111,17 @@ class window.MP.player.Player
     for i in [0..3]
       @channels.push(new window.MP.player.Channel(this))
 
+    @audioChannels = 2
+
+    @audio = new Audio()
+    @sampleRate = 44100
+    @audio.mozSetup(@audioChannels, @sampleRate)
+    @preBufferSize = @sampleRate / 2
+    
+    @bufferCounter = 0
+    @currentWritePosition = 0
+    @tail = null
+    
     @mixer = new window.MP.player.Mixer()
     @calc_ptable()
     @calc_vibtable()
@@ -120,10 +131,8 @@ class window.MP.player.Player
     @cur_pattern = 0
     @playing = false
 
-    @audioserver = new XAudioServer 2, 48000, 48000 >> 2, 48000 << 1, @xaudio_render, 1
-    window.AS = @audioserver
-    
-    window.requestAnimationFrame(@raf_callback, null);
+    @audioCallback = @audio_render
+    #window.requestAnimationFrame(@raf_callback, null);
 
     # @soundbridge = SoundBridge(2, 48000, '/javascripts/vendor/');
     # window.setTimeout(
@@ -132,14 +141,35 @@ class window.MP.player.Player
     #     @soundbridge.play()
     #   1000
     # )
+    @timerFunction()
 
 
-  raf_callback: =>
-    @audioserver.executeCallback()
-    window.requestAnimationFrame(@raf_callback, null);
+  writeData: (data) =>
+    written = 0
+    if data
+      written = @audio.mozWriteAudio(data);
+      @currentWritePosition += written
+      if written < data.length
+        @tail = data.slice(written)
+        return true
+      @tail = null
+    return false
+  
+  timerFunction: =>
+    if @playing
+      remainder = false
+      if not @writeData(@tail)      
+        currentPosition = @audio.mozCurrentSampleOffset()
+        available = Math.min((currentPosition + @preBufferSize) - @currentWritePosition, @preBufferSize)
+        if available > 0
+          soundData = new Float32Array(available * @audioChannels)
+          @bufferCounter = 0          
+          @audio_render(soundData, available, @audioChannels)
+          @writeData(soundData)
+    window.setTimeout(@timerFunction,100);
 
   
-  OUTRATE: 48000
+  OUTRATE: 44100
   OUTFPS: 50
 
   channels: []
@@ -207,9 +237,7 @@ class window.MP.player.Player
       @mixer.voices[ch].volume = 0
       @channels[ch].volume = 0
 
-  xaudio_render: (len) =>
-      
-    buffer = new Float32Array(len * 2)
+  audio_render: (buffer, len, channels) =>      
     l_buf = new Float32Array(len)
     r_buf = new Float32Array(len)
     @render(l_buf, r_buf, len)

@@ -29,7 +29,6 @@ $ ->
     me.addClass('active')
     MP.PlayerInstance.stop()
     
-
   $('.play').click (e) ->
     e.preventDefault()
     me = $(this)
